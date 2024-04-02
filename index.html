@@ -19,20 +19,19 @@
         <div>Player Has: <span id="player-total"></span></div>   
     </div>
     <div>
-        
-        <section id="hand">
+        <section id="hand-controls">
+            <div>Bet Amount: $<span id="bet"></span></div>
             <div id="bet-controls">
-                <div>Bet Amount: $<span id="bet"></span></div>
-                <h4>Click to Add to Bet</h4>
-                <button>$1</button>
+                <h5>Click to Add to Bet</h5>
+                <h5>Press Shift While Clicking to Subtract</h5>
                 <button>$5</button>
+                <button>$10</button>
                 <button>$25</button>
                 <button>$100</button>
-                <button id="deal-btn">Deal</button>
-                <h4>Press Shift While Clicking to Subtract</h4>
             </div>
+            <button id="deal-btn">Deal</button>
         </section>
-        <div>Bank: $<span id="bank"></span></div>
+        <div>Bank: $<span id="bankAmt"></span></div>
         <section id="player-controls">
             <button id="stand-btn">Stand</button>
             <button id="hit-btn">Hit</button>
