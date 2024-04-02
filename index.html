@@ -2,12 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="css/main.css">
+    <meta name="viewport" content="width=device-width">
+    <title>Blackjack</title>
+    <link href="card-library/css/cardstarter.css" rel="stylesheet" type="text/css" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
     <script defer src="js/main.js"></script>
 </head>
-<body>
-    
+<body class="flex-ctr">
+    <div>
+        <h1 id="msg"></h1>
+        <h1>Dealer Hand</h1>
+        <section class="card-container" id="dealer-hand"></section>
+        <div>Dealer Has: <span id="dealer-total"></span></div>      
+        <h1>Player Hand</h1> 
+        <section class="card-container" id="player-hand"></section>
+        <div>Player Has: <span id="player-total"></span></div>   
+    </div>
+    <div>
+        
+          <div>Bet Amount: $<span id="bet"></span></div>
+          
+          <section id="hand">
+              <button id="deal-btn">Deal</button>
+              <div id="bet-controls">
+                  <h5>Click to Add to Bet</h5>
+                  <button>$1</button>
+                  <button>$5</button>
+                  <button>$25</button>
+                  <button>$100</button>
+                  <h5>Press Shift While Clicking to Subtract</h5>
+                </div>
+            </section>
+            <div>Bank: $<span id="bank"></span></div>
+        <section id="player-controls">
+          <button id="stand">Stand</button>
+          <button id="hit">Hit</button>
+          <button id="double">Double</button>
+        </section>
+      </div>
+   </div>
 </body>
 </html>
