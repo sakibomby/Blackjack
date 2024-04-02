@@ -14,19 +14,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 300px;
 }
 
 .card-container {
-  display: grid;
+  display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   justify-content: center;
   border: 4px solid rgb(183, 189, 15);
   border-radius: 10%;
-  height: 155px;
+  height: 160px;
   min-width: 150px;
-  margin-left: 300px;
-  margin-bottom: 18px;
+  padding: 11vmin;
 }
 
 #bet-controls {
@@ -34,7 +33,7 @@ body {
 }
 
 button {
-  margin: 40px auto;
+  margin: 17px auto;
   padding: 10px;
   font-size: 16px;
 }
@@ -47,7 +46,4 @@ button:hover {
 body > div:first-child {
   margin-right: 40px;
 }
-sdskgjdf
-jgfjdgjkfd
-fdlgkfdjgkl
-dfogjfdlk
+
