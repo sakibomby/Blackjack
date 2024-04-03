@@ -8,7 +8,7 @@ const MSG_LOOKUP = {
   'P': 'Player Wins!',
   'D': 'Dealer Wins',
   'B': 'You Busted...',
-  'PBJ': 'Blackjack! You WIN!',
+  'PBJ': 'Blackjack! You WIN! 🍗🧇🤑',
   'DBJ': 'Dealer Has Blackjack',
 };
 

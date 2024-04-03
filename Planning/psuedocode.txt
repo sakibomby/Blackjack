@@ -1,0 +1,35 @@
+Psuedocode
+
+1) Define required constants:
+  1.1) Define player options: hit ,stand, double, play, reset
+  1.2) Define card values.
+  1.3) Define chip values.
+  
+2) Define required variables used to track the state of the game:
+  2.1) Use a deck var for deck of cards stored in an array to have key values and shuffled every hand.
+  2.2) Use a player var for player cards.
+  2.3) Use a dealer var for dealer cards.
+  2.4) Use a winner variable to represent three different possibilities - player that won, lost ,tie , or  a BJ winner variable for 3:2 payout = 2.5xbet.
+  2.5) Use a bank var for player amount of money $1000.
+  2.6) Use a bet amount var for amount of wager/player bet.
+
+
+3) Store elements on the page that will be accessed in code more than once in variables to make code more concise, readable and performant:
+ 3.1) Store and update player bank.
+
+4) Upon loading the app should:
+  4.1) Initialize and render board
+  
+5)Handle wager
+  5.1) Render a message to place bet and state variables to the board to place bet.
+  5.2) Add wager to pot     5.3) Wait for player to press play
+  5.4) Initialize winner to 0 and . 
+  5.5) Render 2 cards to player and 2 cards to dealer with 1 facing up. If Dealer has 21 player loses else continue.
+  5.6) Make usable player option buttons until stand is pushed Double may only be pressed once as the first button pressed after wager is made. Player may hit until card total > 21 then player loses.
+  5.7) Render show dealer hidden card and stops if player total > 21. Dealer draws cards until total value >=17 or >21
+  5.8) Compare sum of player card total and dealer card total. Winner = highest total <= 21.
+  5.9) Render bet amount from pot to 0 if player loses. If player wins pot is added 2xbet and placed back in player bank. Add 2.5xbet if player wins with blackjack. 
+ 5.10) Initialize to handle wager
+
+6) Handle a player clicking the reset button to start over
+  
