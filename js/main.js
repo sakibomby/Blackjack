@@ -22,7 +22,7 @@ let bet;
 let outcome;
 
   /*----- cached elements  -----*/
-const msgEl = document.getElementById('msg');
+let msgEl = document.getElementById('msg');
 const dealerHandEl = document.getElementById('dealer-hand');
 const dealerTotalEl = document.getElementById('dealer-total');
 const playerHandEl = document.getElementById('player-hand');
@@ -59,7 +59,7 @@ function handleStand() {
   dealerPlay();
   if (pTotal === dTotal) {
     outcome = 'T';
-  } else if (dTotal > pTotal) {
+  } else if (dTotal > pTotal && dTotal <= 21) {
     outcome = 'D';
   } else {
     outcome = 'P';
@@ -76,8 +76,18 @@ function dealerPlay() {
 }
 
 function handleDouble() {
-
-}
+  if ((bet * 2) > bankAmt) {
+    msgEl.innerHTML = 'Inusfficient Funds...😭';
+    return;
+  } else {
+    bankAmt = (bankAmt - bet);
+    (bet *= 2);
+    pHand.push(deck.pop());
+    pTotal = getHandTotal(pHand);
+    handleStand();
+    }
+    render();
+  }
 
 function settleBet() {
   if (outcome === 'PBJ') {
@@ -112,7 +122,6 @@ function handleBet(evt) {
   const btn = evt.target;
   if (btn.tagName !== 'BUTTON') return;
   const betAmt = parseInt(btn.innerText.replace('$', ''));
-  console.log(betAmt);
   bet += betAmt;
   bankAmt -= betAmt;
   render();
