@@ -7,6 +7,7 @@ const MSG_LOOKUP = {
   'T': "It's a Push",
   'P': 'Player Wins!',
   'D': 'Dealer Wins',
+  'B': 'You Busted...',
   'PBJ': 'Blackjack! You WIN!',
   'DBJ': 'Dealer Has Blackjack',
 };
@@ -49,7 +50,7 @@ function handleHit() {
   pHand.push(deck.pop());
   pTotal = getHandTotal(pHand);
   if (pTotal > 21) {
-    outcome = "D";
+    outcome = "B";
     settleBet();
   }  
   render();
@@ -61,6 +62,8 @@ function handleStand() {
     outcome = 'T';
   } else if (dTotal > pTotal && dTotal <= 21) {
     outcome = 'D';
+  } else if (pTotal > 21) {
+    outcome = 'B';  
   } else {
     outcome = 'P';
   }
@@ -84,8 +87,12 @@ function handleDouble() {
     (bet *= 2);
     pHand.push(deck.pop());
     pTotal = getHandTotal(pHand);
-    handleStand();
+    if (pTotal > 21) {
+      outcome = 'B';
+    } else {
+      handleStand();
     }
+  }  
     render();
   }
 
@@ -113,6 +120,10 @@ function handleDeal() {
     outcome = 'DBJ'; 
   } else if (pTotal === 21) {
     outcome = 'PBJ'; 
+  } else if (dTotal > 21) {
+    outcome = 'P';
+  } else if (pTotal > 21) {
+    outcome = 'D';
   }
   if (outcome) settleBet();
   render();
