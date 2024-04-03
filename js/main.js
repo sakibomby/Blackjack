@@ -3,11 +3,11 @@ const suits = ['s', 'c', 'd', 'h'];
 const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
 const dealerDeck = buildDealerDeck();
 const MSG_LOOKUP = {
-  null: 'Good Luck!',
+  null: "Let's Play Blackjack!",
   'T': "It's a Push",
   'P': 'Player Wins!',
   'D': 'Dealer Wins',
-  'PBJ': 'Player Has Blackjack',
+  'PBJ': 'Blackjack! You WIN!',
   'DBJ': 'Dealer Has Blackjack',
 };
 
@@ -33,9 +33,7 @@ const playerControlsEl = document.getElementById('player-controls');
 const handControlsEl = document.getElementById('hand-controls');
 const dealBtn = document.getElementById('deal-btn');
 const betBtns = document.querySelectorAll('#bet-controls > button');
-const hitBtn = document.getElementById('hit-btn');
-const standBtn = document.getElementById('stand-btn');
-const doubleBtn = document.getElementById('double-btn');
+
 
   /*----- event listeners -----*/
 dealBtn.addEventListener('click', handleDeal);
@@ -49,22 +47,52 @@ init();
 
 function handleHit() {
   pHand.push(deck.pop());
-  pTotal = getHandTotal(phand);
-  if (pTotal > 21) outcome =
+  pTotal = getHandTotal(pHand);
+  if (pTotal > 21) {
+    outcome = "D";
+    settleBet();
+  }  
   render();
 }
 
 function handleStand() {
+  dealerPlay();
+  if (pTotal === dTotal) {
+    outcome = 'T';
+  } else if (dTotal > pTotal) {
+    outcome = 'D';
+  } else {
+    outcome = 'P';
+  }
+  settleBet();
+  render();
+}
 
+function dealerPlay() {
+  while (dTotal < 17) {
+    dHand.push(deck.pop());
+    dTotal = getHandTotal(dHand);
+  }
 }
 
 function handleDouble() {
 
 }
 
+function settleBet() {
+  if (outcome === 'PBJ') {
+    bankAmt += bet + (bet * 1.5);
+  } else if (outcome === 'P') {
+    bankAmt += bet + bet; 
+  }
+  bet = 0;
+}
+
 function handleDeal() {
   outcome = null;
   deck = getNewShuffledDeck();
+  dHand = [];
+  pHand = [];
   dHand = [deck.pop(), deck.pop()];
   pHand = [deck.pop(), deck.pop()];
   dTotal = getHandTotal(dHand);
@@ -145,7 +173,7 @@ function renderHands() {
 }
 
 function handInPlay() {
-
+  return pHand.length && !outcome;
 }
 
 function getNewShuffledDeck() {
