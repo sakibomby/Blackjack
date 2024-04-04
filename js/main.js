@@ -36,6 +36,7 @@ const dealBtn = document.getElementById('deal-btn');
 const betBtns = document.querySelectorAll('#bet-controls > button');
 const resetBtn = document.getElementById('reset-bet');
 const dblBtn = document.getElementById('double-btn');
+const replayBtn = document.getElementById('replay-btn')
 
   /*----- event listeners -----*/
 dealBtn.addEventListener('click', handleDeal);
@@ -45,7 +46,9 @@ dblBtn.addEventListener('click', handleDouble);
 document.getElementById('bet-controls').addEventListener('click', handleBet);
 resetBtn.addEventListener('click', resetBet);
 document.getElementById('bet-controls').addEventListener('contextmenu', handleDecreaseBet);
-  /*----- functions -----*/
+replayBtn.addEventListener('click', init);
+
+/*----- functions -----*/
 init();
 
 function resetBet(evt) {
@@ -197,6 +200,8 @@ function renderControls() {
   playerControlsEl.style.visibility = handInPlay() ? 'visible' : 'hidden';
   dealBtn.style.visibility = bet >= 5 && !handInPlay() ? 'visible' : 'hidden';
   resetBtn.style.visibility = bet >= 5 && !handInPlay() ? 'visible' : 'hidden';
+  replayBtn.style.visibility = bet === 0 && bankAmt === 0 && !handInPlay() ? 'visible' : 'hidden';
+
 }
 
 function renderHands() {
