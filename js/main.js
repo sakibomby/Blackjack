@@ -5,9 +5,9 @@ const dealerDeck = buildDealerDeck();
 const MSG_LOOKUP = {
   null: "Let's Play Blackjack!",
   'T': "It's a Push",
-  'P': 'Player Wins!',
-  'D': 'Dealer Wins',
-  'B': 'You Busted...',
+  'P': 'You WIN!!!💰💵',
+  'D': 'The House Wins',
+  'B': 'You Busted...🤯',
   'PBJ': 'Blackjack! You WIN! 🍗🧇🤑',
   'DBJ': 'Dealer Has Blackjack',
 };
@@ -34,21 +34,39 @@ const playerControlsEl = document.getElementById('player-controls');
 const handControlsEl = document.getElementById('hand-controls');
 const dealBtn = document.getElementById('deal-btn');
 const betBtns = document.querySelectorAll('#bet-controls > button');
-
+const resetBtn = document.getElementById('reset-bet');
+const dblBtn = document.getElementById('double-btn');
 
   /*----- event listeners -----*/
 dealBtn.addEventListener('click', handleDeal);
 document.getElementById('hit-btn').addEventListener('click', handleHit);
 document.getElementById('stand-btn').addEventListener('click', handleStand);
-document.getElementById('double-btn').addEventListener('click', handleDouble);
+dblBtn.addEventListener('click', handleDouble);
 document.getElementById('bet-controls').addEventListener('click', handleBet);
-
+resetBtn.addEventListener('click', resetBet);
+document.getElementById('bet-controls').addEventListener('contextmenu', handleDecreaseBet);
   /*----- functions -----*/
 init();
+
+function resetBet(evt) {
+  bankAmt += bet;
+  bet = 0;
+  render();
+}
+
+function handleDecreaseBet(evt) {
+  evt.preventDefault();
+  const btn = evt.target;
+  if (btn.tagName !== 'BUTTON') return;
+  const betAmt = parseInt(btn.innerText.replace('$', ''));
+  bet -= betAmt;
+  bankAmt += betAmt;
+}
 
 function handleHit() {
   pHand.push(deck.pop());
   pTotal = getHandTotal(pHand);
+  dblBtn.style.visibility = 'hidden';
   if (pTotal > 21) {
     outcome = "B";
     settleBet();
@@ -120,12 +138,7 @@ function handleDeal() {
     outcome = 'DBJ'; 
   } else if (pTotal === 21) {
     outcome = 'PBJ'; 
-  } else if (dTotal > 21) {
-    outcome = 'P';
-  } else if (pTotal > 21) {
-    outcome = 'D';
-  }
-  if (outcome) settleBet();
+  } if (outcome) settleBet();
   render();
 }
 
@@ -183,6 +196,7 @@ function renderControls() {
   handControlsEl.style.visibility = handInPlay() ? 'hidden' : 'visible';
   playerControlsEl.style.visibility = handInPlay() ? 'visible' : 'hidden';
   dealBtn.style.visibility = bet >= 5 && !handInPlay() ? 'visible' : 'hidden';
+  resetBtn.style.visibility = bet >= 5 && !handInPlay() ? 'visible' : 'hidden';
 }
 
 function renderHands() {

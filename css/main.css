@@ -8,6 +8,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  font-family: Bungee Spice;
 }
 
 .flex-ctr {
@@ -15,6 +16,10 @@ body {
   justify-content: center;
   align-items: center;
   margin-left: 300px;
+}
+
+#msg {
+  font-size: 30px;
 }
 
 .card-container {
@@ -35,6 +40,7 @@ button {
   margin: 10px auto;
   padding: 10px;
   font-size: 16px;
+  border-ra
 }
 
 button:hover {

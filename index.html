@@ -6,6 +6,9 @@
     <title>Blackjack</title>
     <link href="card-library/css/cardstarter.min.css" rel="stylesheet" type="text/css" />
     <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet">
     <script defer src="js/main.js"></script>
 </head>
 <body class="flex-ctr">
@@ -22,12 +25,13 @@
         <section id="hand-controls">
             <div id="bet-controls">
                 <h5>Click to Add to Bet</h5>
-                <h5>Press Shift While Clicking to Subtract</h5>
+                <h5>RIght Click to Subtract</h5>
                 <button>$5</button>
                 <button>$10</button>
                 <button>$25</button>
                 <button>$100</button>
             </div>
+            <button id="reset-bet">Reset Bet</button>
             <button id="deal-btn">Deal</button>
         </section>
         <div>Bet Amount: $<span id="bet"></span></div>
