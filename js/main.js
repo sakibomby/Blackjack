@@ -64,6 +64,7 @@ function handleDecreaseBet(evt) {
   const betAmt = parseInt(btn.innerText.replace('$', ''));
   bet -= betAmt;
   bankAmt += betAmt;
+  render();
 }
 
 function handleHit() {
