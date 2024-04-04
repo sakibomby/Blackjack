@@ -110,6 +110,7 @@ function handleDouble() {
     pTotal = getHandTotal(pHand);
     if (pTotal > 21) {
       outcome = 'B';
+      bet = 0;
     } else {
       handleStand();
     }
@@ -122,6 +123,8 @@ function settleBet() {
     bankAmt += bet + (bet * 1.5);
   } else if (outcome === 'P') {
     bankAmt += bet + bet; 
+  } else if (outcome === 'T') {
+    bankAmt += bet;
   }
   bet = 0;
 }
