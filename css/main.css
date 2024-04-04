@@ -12,10 +12,6 @@ body {
   font-family: Bungee Spice;
 }
 
-.card.medium {
-font-size: 50px;
-}
-
 .flex-ctr {
   display: flex;
   justify-content: center;
