@@ -37,6 +37,7 @@ const betBtns = document.querySelectorAll('#bet-controls > button');
 const resetBtn = document.getElementById('reset-bet');
 const dblBtn = document.getElementById('double-btn');
 const replayBtn = document.getElementById('replay-btn')
+const bgCheckbox = document.querySelector('input[type="checkbox"]');
 
   /*----- event listeners -----*/
 dealBtn.addEventListener('click', handleDeal);
@@ -47,6 +48,7 @@ document.getElementById('bet-controls').addEventListener('click', handleBet);
 resetBtn.addEventListener('click', resetBet);
 document.getElementById('bet-controls').addEventListener('contextmenu', handleDecreaseBet);
 replayBtn.addEventListener('click', init);
+bgCheckbox.addEventListener('change', handleBgMusic);
 
 /*----- functions -----*/
 init();
@@ -68,9 +70,10 @@ function handleDecreaseBet(evt) {
 }
 
 function handleHit() {
+  playCard();
+  dblBtn.style.visibility = 'hidden';
   pHand.push(deck.pop());
   pTotal = getHandTotal(pHand);
-  dblBtn.style.visibility = 'hidden';
   if (pTotal > 21) {
     outcome = "B";
     settleBet();
@@ -89,6 +92,7 @@ function handleStand() {
   } else {
     outcome = 'P';
   }
+  dblBtn.style.visibility = 'hidden';
   settleBet();
   render();
 }
@@ -101,16 +105,18 @@ function dealerPlay() {
 }
 
 function handleDouble() {
-  if ((bet * 2) > bankAmt) {
+  if (bet > bankAmt) {
     msgEl.innerHTML = 'Inusfficient Funds...😭';
     return;
   } else {
+    playCard()
     bankAmt = (bankAmt - bet);
     (bet *= 2);
     pHand.push(deck.pop());
     pTotal = getHandTotal(pHand);
     if (pTotal > 21) {
       outcome = 'B';
+      dblBtn.style.visibility = 'hidden';
       bet = 0;
     } else {
       handleStand();
@@ -127,10 +133,30 @@ function settleBet() {
   } else if (outcome === 'T') {
     bankAmt += bet;
   }
+  dblBtn.style.visibility = 'hidden';
   bet = 0;
+  render();
+}
+
+function playCard() {
+  let audio = new Audio("flipcard-91468.mp3");
+  audio.play()
+}
+
+function shuffleDeck() {
+  let audio = new Audio("shuffling-cards-5.mp3");
+  audio.play()
+}
+
+function handleBgMusic() {
+  let player = new Audio("electronic-love-future-bass-188670.mp3");
+  bgCheckbox.checked ? player.play() : player.pause();
+  player.volume = .2;
+  player.loop = true;
 }
 
 function handleDeal() {
+  shuffleDeck();
   outcome = null;
   deck = getNewShuffledDeck();
   dHand = [];
@@ -139,6 +165,7 @@ function handleDeal() {
   pHand = [deck.pop(), deck.pop()];
   dTotal = getHandTotal(dHand);
   pTotal = getHandTotal(pHand);
+  dblBtn.style.visibility = handInPlay() ? 'visible' : 'hidden';
   if (dTotal === 21 && pTotal === 21) {
     outcome = 'T'; 
   } else if (dTotal === 21) {
@@ -173,6 +200,7 @@ function getHandTotal(hand) {
 }
 //Initialize state, then call render()
 function init() {
+  handleBgMusic();
   outcome = null;
   pHand = [];
   dHand = [];
