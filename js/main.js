@@ -38,6 +38,7 @@ const resetBtn = document.getElementById('reset-bet');
 const dblBtn = document.getElementById('double-btn');
 const replayBtn = document.getElementById('replay-btn')
 const bgCheckbox = document.querySelector('input[type="checkbox"]');
+const bgPlayer = document.getElementById('bg-player');
 
   /*----- event listeners -----*/
 dealBtn.addEventListener('click', handleDeal);
@@ -149,10 +150,8 @@ function shuffleDeck() {
 }
 
 function handleBgMusic() {
-  let player = new Audio("electronic-love-future-bass-188670.mp3");
-  bgCheckbox.checked ? player.play() : player.pause();
-  player.volume = .2;
-  player.loop = true;
+  bgCheckbox.checked ? bgPlayer.play() : bgPlayer.pause();
+  bgPlayer.volume = .2;
 }
 
 function handleDeal() {
@@ -200,7 +199,7 @@ function getHandTotal(hand) {
 }
 //Initialize state, then call render()
 function init() {
-  handleBgMusic();
+  bgPlayer.style.visibility = 'hidden';
   outcome = null;
   pHand = [];
   dHand = [];
