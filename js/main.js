@@ -1,4 +1,3 @@
-  /*----- constants -----*/
 const suits = ['s', 'c', 'd', 'h'];
 const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
 const dealerDeck = buildDealerDeck();
@@ -12,7 +11,6 @@ const MSG_LOOKUP = {
   'DBJ': 'Dealer Has Blackjack',
 };
 
-  /*----- state variables -----*/
 let deck;
 let pHand; 
 let dHand;
@@ -22,7 +20,6 @@ let bankAmt;
 let bet;
 let outcome;
 
-  /*----- cached elements  -----*/
 let msgEl = document.getElementById('msg');
 const dealerHandEl = document.getElementById('dealer-hand');
 const dealerTotalEl = document.getElementById('dealer-total');
@@ -40,7 +37,7 @@ const replayBtn = document.getElementById('replay-btn')
 const bgCheckbox = document.querySelector('input[type="checkbox"]');
 const bgPlayer = document.getElementById('bg-player');
 
-  /*----- event listeners -----*/
+
 dealBtn.addEventListener('click', handleDeal);
 document.getElementById('hit-btn').addEventListener('click', handleHit);
 document.getElementById('stand-btn').addEventListener('click', handleStand);
@@ -51,7 +48,6 @@ document.getElementById('bet-controls').addEventListener('contextmenu', handleDe
 replayBtn.addEventListener('click', init);
 bgCheckbox.addEventListener('change', handleBgMusic);
 
-/*----- functions -----*/
 init();
 
 function resetBet(evt) {
@@ -197,7 +193,7 @@ function getHandTotal(hand) {
   }
   return total;
 }
-//Initialize state, then call render()
+
 function init() {
   bgPlayer.style.visibility = 'hidden';
   outcome = null;
@@ -209,7 +205,6 @@ function init() {
   render();
 }
 
-//Visualize all state to the DOM
 function render() {
   renderHands() ;
   bankAmtEl.innerHTML = bankAmt;
